@@ -1,0 +1,67 @@
+`timescale 100 ps/ 1 ps
+module adder_vlg_tst();
+// test vector input registers
+reg A1;
+reg A2;
+reg A3;
+reg A4;
+reg B1;
+reg B2;
+reg B3;
+reg B4;
+reg C0;
+reg clk;
+// wires                                               
+wire C4;
+wire S1;
+wire S2;
+wire S3;
+wire S4;
+                     
+adder i1 (
+    .A1(A1),
+    .A2(A2),
+    .A3(A3),
+    .A4(A4),
+    .B1(B1),
+    .B2(B2),
+    .B3(B3),
+    .B4(B4),
+    .C0(C0),
+    .C4(C4),
+    .S1(S1),
+    .S2(S2),
+    .S3(S3),
+    .S4(S4)
+);
+initial                                                
+begin                                                  
+    clk=1'b0;             
+    A1=1'b0;
+    A2=1'b0;
+    A3=1'b0;
+    A4=1'b0;
+    B1=1'b0;
+    B2=1'b0;
+    B3=1'b0;
+    B4=1'b0;
+    C0=1'b0;                                 
+$display("Running testbench");                       
+end
+                                                    
+always #50 clk=~clk; 
+always@(posedge clk)
+begin
+    A1={$random} % 2;
+    A2={$random} % 2;
+    A3={$random} % 2;
+    A4={$random} % 2;
+    B1={$random} % 2;
+    B2={$random} % 2;
+    B3={$random} % 2;
+    B4={$random} % 2;
+    C0={$random} % 2;
+end                                         
+                                                   
+endmodule
+
